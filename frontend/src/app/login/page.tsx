@@ -13,6 +13,8 @@ function LoginPage() {
             className="mr-2 h-8 w-8"
             src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
             alt="logo"
+            width={32}
+            height={32}
           />
           時間割アプリ
         </a>
