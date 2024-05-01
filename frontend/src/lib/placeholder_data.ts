@@ -1,4 +1,6 @@
-const users = [
+import { User } from '@/types/user'
+
+const users: User[] = [
 	{
 		id: 1,
 		name: 'Alice',
