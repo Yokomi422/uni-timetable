@@ -17,7 +17,7 @@ export const { auth, signIn, signOut } = NextAuth({
         if (!parsdCredentials.success) {
           throw new Error('Invalid credentials');
         }
-
+        // TODO replace this with your own authentication logic
         // sample user
         const sampleUser = {
           id: '1',
