@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "npx prisma migrate dev --name init && npx tsc prisma/seed.ts && node prisma/seed.js && next dev",
     "build": "next build",
@@ -12,6 +13,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.13.0",
+    "dotenv": "^16.4.5",
     "next": "14.2.3",
     "next-auth": "^5.0.0-beta.17",
     "react": "^18",
