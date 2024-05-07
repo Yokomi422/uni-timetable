@@ -1,0 +1,9 @@
+services:
+  mysql:
+    build: ./docker/mysql
+    ports:
+      - "3306:3306"
+    env_file:
+      - ./docker/mysql/.env
+    environment:
+      MYSQL_ROOT_PASSWORD: password
