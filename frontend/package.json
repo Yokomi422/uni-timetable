@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "npx prisma migrate dev --name init && npx tsc prisma/seed.ts && node prisma/seed.js && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -11,6 +11,7 @@
     "fmt": "prettier . --check"
   },
   "dependencies": {
+    "@prisma/client": "^5.13.0",
     "next": "14.2.3",
     "next-auth": "^5.0.0-beta.17",
     "react": "^18",
