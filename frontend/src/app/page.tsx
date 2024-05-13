@@ -16,7 +16,7 @@ export default function Home() {
         </p>
         <Link href="/timetable">
           <div className="inline-block rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
-            Go to Timetable
+            時間割
           </div>
         </Link>
       </div>
@@ -28,7 +28,7 @@ export default function Home() {
         </p>
         <Link href="/search">
           <div className="inline-block rounded-lg bg-green-500 px-4 py-2 text-white hover:bg-green-600">
-            Go to Search
+            授業検索
           </div>
         </Link>
       </div>
@@ -40,7 +40,7 @@ export default function Home() {
         </p>
         <Link href="/profile">
           <div className="inline-block rounded-lg bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600">
-            Go to Profile
+            マイページ
           </div>
         </Link>
       </div>

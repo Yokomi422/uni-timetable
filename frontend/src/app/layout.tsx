@@ -13,25 +13,25 @@ const Layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
             <Link href="/">
               <div className="flex flex-col items-center space-y-1 text-gray-600 hover:text-blue-500">
                 <FaHome className="text-2xl" />
-                <span className="text-xs">Home</span>
+                <span className="text-xs">ホーム</span>
               </div>
             </Link>
             <Link href="/timetable">
               <div className="flex flex-col items-center space-y-1 text-gray-600 hover:text-blue-500">
                 <FaCalendarAlt className="text-2xl" />
-                <span className="text-xs">Timetable</span>
+                <span className="text-xs">時間割</span>
               </div>
             </Link>
             <Link href="/search">
               <div className="flex flex-col items-center space-y-1 text-gray-600 hover:text-blue-500">
                 <FaSearch className="text-2xl" />
-                <span className="text-xs">Search</span>
+                <span className="text-xs">授業検索</span>
               </div>
             </Link>
             <Link href="/profile">
               <div className="flex flex-col items-center space-y-1 text-gray-600 hover:text-blue-500">
                 <FaUserCircle className="text-2xl" />
-                <span className="text-xs">Profile</span>
+                <span className="text-xs">マイページ</span>
               </div>
             </Link>
           </nav>
