@@ -4,7 +4,7 @@ import Image from 'next/image';
 export default function Profile() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="mb-4 text-center text-4xl font-bold">Profile</h1>
+      <h1 className="mb-4 text-center text-4xl font-bold">プロフィール</h1>
 
       <div className="mb-8">
         <h2 className="text-2xl font-bold">アカウント</h2>
