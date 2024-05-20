@@ -21,8 +21,9 @@ class ClassAttributes(BaseModel):
     name: str
     teacher: str
     semester: str
-    credits: int
+    credits: str
     period: str
     plan: str
     how_grading: str
     caution: str
+    code: str
