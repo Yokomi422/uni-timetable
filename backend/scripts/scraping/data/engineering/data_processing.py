@@ -1,8 +1,10 @@
 import json
-from pydantic import BaseModel
-import unicodedata
 import re
+import unicodedata
+
 from fastapi.encoders import jsonable_encoder
+from pydantic import BaseModel
+
 
 class ClassAttributesScraping(BaseModel):
     name: str
@@ -14,6 +16,7 @@ class ClassAttributesScraping(BaseModel):
     how_grading: str
     caution: str
     code: str
+
 
 class ClassAttributes(BaseModel):
     name: str
@@ -37,6 +40,7 @@ classes: list[ClassAttributesScraping] = [
     ClassAttributesScraping(**c) for c in json_classes
 ]
 
+
 def map_code_department(code: str) -> str:
     mapping = {
         "AA": "航空宇宙工学科",
@@ -57,7 +61,7 @@ def map_code_department(code: str) -> str:
         "SI": "システム創成学科",
         "SA": "環境・エネルギーシステムコース",
         "SB": "システムデザイン＆マネジメントコース",
-        "SC": "知能社会システムコース"
+        "SC": "知能社会システムコース",
     }
 
     if code in mapping:
@@ -83,10 +87,9 @@ def data_processing(c: ClassAttributesScraping) -> ClassAttributes:
         else:
             day.append(period[0:2])
             _period.append(period[2:])
-    
+
     # dayの重複を削除
     day = list(set(day))
-    
 
     refined_data = ClassAttributes(
         name=c.name,
@@ -98,7 +101,7 @@ def data_processing(c: ClassAttributesScraping) -> ClassAttributes:
         period=_period,
         plan=c.plan,
         how_grading=c.how_grading,
-        caution=c.caution
+        caution=c.caution,
     )
 
     return refined_data

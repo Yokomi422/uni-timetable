@@ -31,13 +31,16 @@ class Teacher(SQLModel, table=True):
     classes: List["Class"] = Relationship(back_populates="teacher")
 
 
+# ひとまずこれしか使わない
 class Class(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     name: str
-    description: str
     credits: int
-    semester: str
-    department_id: Optional[int] = Field(default=None, foreign_key="department.id")
-    department: Optional[Department] = Relationship(back_populates="classes")
-    teacher_id: Optional[int] = Field(default=None, foreign_key="teacher.id")
-    teacher: Optional[Teacher] = Relationship(back_populates="classes")
+    semester: List[str] = Field(sa_column_kwargs={"type_": "TEXT"})
+    day: List[str] = Field(sa_column_kwargs={"type_": "TEXT"})
+    period: List[str] = Field(sa_column_kwargs={"type_": "TEXT"})
+    plan: str
+    how_grading: str
+    caution: str
+    department: str
+    teacher: str

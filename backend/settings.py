@@ -6,6 +6,7 @@ load_dotenv()
 
 class Settings(BaseSettings):
     OPENAI_API_KEY: str
+    MYSQL_URL: str
 
 
 def get_settings() -> Settings:

@@ -28,6 +28,7 @@ class ClassAttributesScraping(BaseModel):
     caution: str
     code: str
 
+
 class ClassAttributes(BaseModel):
     name: str
     credits: str
