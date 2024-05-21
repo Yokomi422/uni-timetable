@@ -1,16 +1,16 @@
 import json
 import time
 
+from data.engineering.type import ClassAttributesScraping, get_urls
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from type import ClassAttributes, get_urls
 
 
-def fetch_class_attributes(driver: WebDriver) -> ClassAttributes:
+def fetch_class_attributes(driver: WebDriver) -> ClassAttributesScraping:
     try:
         name = driver.find_elements(
             By.CSS_SELECTOR, ".catalog-page-detail-table-cell.name-cell"
@@ -79,7 +79,7 @@ def fetch_class_attributes(driver: WebDriver) -> ClassAttributes:
     except (IndexError, NoSuchElementException):
         code = "None"
 
-    class_attributes = ClassAttributes(
+    class_attributes = ClassAttributesScraping(
         name=name,
         teacher=teacher,
         semester=semester,

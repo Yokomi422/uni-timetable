@@ -17,7 +17,7 @@ def get_urls():
     return urls
 
 
-class ClassAttributes(BaseModel):
+class ClassAttributesScraping(BaseModel):
     name: str
     teacher: str
     semester: str
@@ -27,3 +27,16 @@ class ClassAttributes(BaseModel):
     how_grading: str
     caution: str
     code: str
+
+
+class ClassAttributes(BaseModel):
+    name: str
+    credits: str
+    semester: list[str]
+    teacher: str
+    department: str
+    day: list[str]
+    period: list[str]
+    plan: str
+    how_grading: str
+    caution: str
