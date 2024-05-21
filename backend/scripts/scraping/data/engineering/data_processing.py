@@ -75,6 +75,7 @@ def data_processing(c: ClassAttributesScraping) -> ClassAttributes:
     code = c.code.split("\n")[0]
     pattern = r"[A-Z]{3}-([A-Z]{2})"
     match = re.search(pattern, code)
+    assert match is not None
     department = map_code_department(match.group(1))
     # 曜限情報の取得
     periods = re.split(r"[ 、]", c.period)
