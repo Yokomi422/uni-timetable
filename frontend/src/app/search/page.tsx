@@ -20,6 +20,7 @@ export default function Search() {
   const [day, setDay] = useState('');
   const [period, setPeriod] = useState('');
   const [classes, setClasses] = useState<ClassData[]>([]);
+  const [searched, setSearched] = useState(false);
 
   const handleDepartmentChange = (event: { target: { value: React.SetStateAction<string> } }) => {
     setDepartment(event.target.value);
@@ -34,6 +35,7 @@ export default function Search() {
   };
 
   const searchClasses = async () => {
+    setSearched(true);
     const queryParams = new URLSearchParams({
       department,
       day,
@@ -70,6 +72,8 @@ export default function Search() {
           <option value="">学科を選択</option>
           <option value="計数工学科">計数工学科</option>
           <option value="航空宇宙工学科">航空宇宙工学科</option>
+          <option value="マテリアル工学科">マテリアル工学科</option>
+          <option value="建築学科">建築学科</option>
         </select>
       </div>
 
@@ -112,20 +116,28 @@ export default function Search() {
         検索
       </button>
       <div className="mt-8 space-y-4">
-        {classes.map((cls: ClassData) => (
-          <div key={cls.id} className="rounded-lg bg-white p-4 shadow-lg">
-            <h3 className="text-xl font-bold">{cls.name}</h3>
-            <p className="text-gray-800">学科: {cls.department}</p>
-            <p className="text-gray-800">クレジット: {cls.credits}</p>
-            <p className="text-gray-800">セメスター: {cls.semester}</p>
-            <p className="text-gray-800">教師: {cls.teacher}</p>
-            <p className="text-gray-800">曜日: {cls.day}</p>
-            <p className="text-gray-800">時限: {cls.period}</p>
-            <p className="text-gray-800">計画: {cls.plan}</p>
-            <p className="text-gray-800">評価方法: {cls.how_grading}</p>
-            <p className="text-gray-800">注意: {cls.caution}</p>
-          </div>
-        ))}
+        {searched ? (
+          classes.length > 0 ? (
+            classes.map((cls: ClassData) => (
+              <div key={cls.id} className="rounded-lg bg-white p-4 shadow-lg">
+                <h3 className="text-xl font-bold">{cls.name}</h3>
+                <p className="text-gray-800">学科: {cls.department}</p>
+                <p className="text-gray-800">クレジット: {cls.credits}</p>
+                <p className="text-gray-800">セメスター: {cls.semester}</p>
+                <p className="text-gray-800">教師: {cls.teacher}</p>
+                <p className="text-gray-800">曜日: {cls.day}</p>
+                <p className="text-gray-800">時限: {cls.period}</p>
+                <p className="text-gray-800">計画: {cls.plan}</p>
+                <p className="text-gray-800">評価方法: {cls.how_grading}</p>
+                <p className="text-gray-800">注意: {cls.caution}</p>
+              </div>
+            ))
+          ) : (
+            <p className="text-center text-xl text-gray-800">
+              該当する授業は見つかりませんでした。
+            </p>
+          )
+        ) : null}
       </div>
     </div>
   );
