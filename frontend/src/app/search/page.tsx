@@ -1,20 +1,35 @@
 'use client';
 import React, { useState } from 'react';
 
+interface ClassData {
+  id: number;
+  name: string;
+  credits: number;
+  semester: string;
+  teacher: string;
+  department: string;
+  day: string;
+  period: string;
+  plan: string;
+  how_grading: string;
+  caution: string;
+}
+
 export default function Search() {
   const [department, setDepartment] = useState('');
   const [day, setDay] = useState('');
   const [period, setPeriod] = useState('');
+  const [classes, setClasses] = useState<ClassData[]>([]);
 
-  const handleDepartmentChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+  const handleDepartmentChange = (event: { target: { value: React.SetStateAction<string> } }) => {
     setDepartment(event.target.value);
   };
 
-  const handleDayChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+  const handleDayChange = (event: { target: { value: React.SetStateAction<string> } }) => {
     setDay(event.target.value);
   };
 
-  const handlePeriodChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+  const handlePeriodChange = (event: { target: { value: React.SetStateAction<string> } }) => {
     setPeriod(event.target.value);
   };
 
@@ -22,27 +37,25 @@ export default function Search() {
     const queryParams = new URLSearchParams({
       department,
       day,
-      period
+      period,
     }).toString();
-  
+
     const url = `http://127.0.0.1:8080/search?${queryParams}`;
-  
+
     const response = await fetch(url, {
       headers: {
-        'Accept': 'application/json' 
-      }
+        Accept: 'application/json',
+      },
     });
-  
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-  
-    const data = await response.json();
-    console.log('Response data:', data);
-  };
-  
-  
 
+    const data = await response.json();
+    setClasses(data);
+    console.log(data);
+  };
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="mb-4 text-center text-4xl font-bold">授業検索</h1>
@@ -98,6 +111,22 @@ export default function Search() {
       >
         検索
       </button>
+      <div className="mt-8 space-y-4">
+        {classes.map((cls: ClassData) => (
+          <div key={cls.id} className="rounded-lg bg-white p-4 shadow-lg">
+            <h3 className="text-xl font-bold">{cls.name}</h3>
+            <p className="text-gray-800">学科: {cls.department}</p>
+            <p className="text-gray-800">クレジット: {cls.credits}</p>
+            <p className="text-gray-800">セメスター: {cls.semester}</p>
+            <p className="text-gray-800">教師: {cls.teacher}</p>
+            <p className="text-gray-800">曜日: {cls.day}</p>
+            <p className="text-gray-800">時限: {cls.period}</p>
+            <p className="text-gray-800">計画: {cls.plan}</p>
+            <p className="text-gray-800">評価方法: {cls.how_grading}</p>
+            <p className="text-gray-800">注意: {cls.caution}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
