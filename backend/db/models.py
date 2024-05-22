@@ -1,46 +1,21 @@
-"""
-サンプルデータを準備するときは、
-以下のコマンドを実行してください。
-```
-python fix_copied_str.py [ファイル名] | pbcopy
-```
-"""
+from sqlalchemy import Column, Integer, String, Text, create_engine, select
+from sqlalchemy.dialects.mysql import LONGTEXT
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import Session, sessionmaker
 
-from typing import List, Optional
-
-from sqlmodel import Field, Relationship, SQLModel
+Base = declarative_base()
 
 
-class Faculty(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    name: str
-    departments: List["Department"] = Relationship(back_populates="faculty")
-
-
-class Department(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    name: str
-    faculty_id: Optional[int] = Field(default=None, foreign_key="faculty.id")
-    faculty: Optional[Faculty] = Relationship(back_populates="departments")
-    classes: List["Class"] = Relationship(back_populates="department")
-
-
-class Teacher(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    name: str
-    classes: List["Class"] = Relationship(back_populates="teacher")
-
-
-# ひとまずこれしか使わない
-class Class(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    name: str
-    credits: int
-    semester: List[str] = Field(sa_column_kwargs={"type_": "TEXT"})
-    day: List[str] = Field(sa_column_kwargs={"type_": "TEXT"})
-    period: List[str] = Field(sa_column_kwargs={"type_": "TEXT"})
-    plan: str
-    how_grading: str
-    caution: str
-    department: str
-    teacher: str
+class ClassModel(Base):  # type: ignore
+    __tablename__ = "classes"
+    id = Column(Integer, primary_key=True)
+    name = Column(String(100))
+    credits = Column(Integer)
+    semester = Column(String(255))
+    teacher = Column(String(100))
+    department = Column(String(100))
+    day = Column(String(50))
+    period = Column(String(50))
+    plan = Column(LONGTEXT)
+    how_grading = Column(Text)
+    caution = Column(LONGTEXT)
