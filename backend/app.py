@@ -41,20 +41,12 @@ def search(
     semester: str = "S1",
     db: Session = Depends(get_db),
 ):
-    print(department, day, period, semester)
     """指定された条件に基づいて授業情報を検索するエンドポイント"""
-    try:
-        query = db.query(ClassModel).filter(
-            ClassModel.department == department,
-            ClassModel.day.contains(day),
-            ClassModel.period.contains(period),
-            ClassModel.semester.contains(semester),
-        )
-        result = query.all()
-        if not result:
-            raise HTTPException(
-                status_code=404, detail="該当する授業は見つかりませんでした。"
-            )
-        return result
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    query = db.query(ClassModel).filter(
+        ClassModel.department == department,
+        ClassModel.day.contains(day),
+        ClassModel.period.contains(period),
+        ClassModel.semester.contains(semester),
+    )
+    result = query.all()
+    return result
