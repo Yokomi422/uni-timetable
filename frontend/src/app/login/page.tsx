@@ -4,7 +4,7 @@ import { config } from 'dotenv';
 
 config();
 
-import { supabase } from '../../../utils/supabase';
+import { supabase } from '@/utils/supabase';
 
 
 import React from 'react';

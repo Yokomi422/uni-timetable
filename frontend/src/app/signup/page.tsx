@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { Box, Button, TextField } from '@mui/material';
 
-import { supabase } from '../../../utils/supabase';
+import { supabase } from '../../utils/supabase';
 import { loginInputSchema, LoginFormInput } from '@/app/login/page';
 
 const SignInPage = () => {
