@@ -7,7 +7,8 @@ import { useRouter } from 'next/navigation';
 import { Box, Button, TextField } from '@mui/material';
 
 import { supabase } from '../../utils/supabase';
-import { loginInputSchema, LoginFormInput } from '@/app/login/page';
+import {  LoginFormInput } from '@/app/login/page';
+import { loginInputSchema } from '@/app/schema';
 
 const SignInPage = () => {
   const router = useRouter();
